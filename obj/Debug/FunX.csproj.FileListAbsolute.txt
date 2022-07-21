@@ -1,0 +1,11 @@
+D:\Repo\CSharp\FunX\bin\Debug\FunX.dll
+D:\Repo\CSharp\FunX\bin\Debug\FunX.pdb
+D:\Repo\CSharp\FunX\obj\Debug\FunX.csproj.CoreCompileInputs.cache
+D:\Repo\CSharp\FunX\obj\Debug\FunX.dll
+D:\Repo\CSharp\FunX\obj\Debug\FunX.pdb
+E:\Repository\CSharp\FunX\bin\Debug\FunX.dll
+E:\Repository\CSharp\FunX\bin\Debug\FunX.pdb
+E:\Repository\CSharp\FunX\obj\Debug\FunX.csproj.AssemblyReference.cache
+E:\Repository\CSharp\FunX\obj\Debug\FunX.csproj.CoreCompileInputs.cache
+E:\Repository\CSharp\FunX\obj\Debug\FunX.dll
+E:\Repository\CSharp\FunX\obj\Debug\FunX.pdb
