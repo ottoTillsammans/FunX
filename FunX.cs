@@ -5,8 +5,6 @@ namespace FunX
 {
     public static class Methods
     {
-        #region Base API.
-
         /// <summary>
         /// Execute function on argument and get result.
         /// </summary>
@@ -15,7 +13,7 @@ namespace FunX
         /// <param name="val">Argument.</param>
         /// <param name="func">Function.</param>
         /// <returns>Func executing result.</returns>
-        public static TResult Do<T, TResult>(this T val, Func<T, TResult> func) => func(val);
+        public static TResult Apply<T, TResult>(this T val, Func<T, TResult> func) => func(val);
 
         /// <summary>
         /// Execute function on argument.
@@ -23,7 +21,7 @@ namespace FunX
         /// <typeparam name="T">Type of function argument.</typeparam>
         /// <param name="val">Argument.</param>
         /// <param name="func">Function.</param>
-        public static void Done<T>(this T val, Action<T> func) => func(val);
+        public static void Apply<T>(this T val, Action<T> func) => func(val);
 
         /// <summary>
         /// Execute function on each collection item and return the collection.
@@ -98,7 +96,5 @@ namespace FunX
         {
             return (v) => (w) => (x) => (y) => (z) => funс(v, w, x, y, z);
         }
-
-        #endregion
     }
 }
