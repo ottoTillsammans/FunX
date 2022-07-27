@@ -6,7 +6,7 @@ namespace FunX
     public static class Methods
     {
         /// <summary>
-        /// Execute function on argument and get result.
+        /// Execute function and return result.
         /// </summary>
         /// <typeparam name="T">Type of function argument.</typeparam>
         /// <typeparam name="TResult">Type of function result.</typeparam>
@@ -16,12 +16,51 @@ namespace FunX
         public static TResult Apply<T, TResult>(this T val, Func<T, TResult> func) => func(val);
 
         /// <summary>
-        /// Execute function on argument.
+        /// Execute function without returning result.
         /// </summary>
         /// <typeparam name="T">Type of function argument.</typeparam>
         /// <param name="val">Argument.</param>
         /// <param name="func">Function.</param>
         public static void Apply<T>(this T val, Action<T> func) => func(val);
+
+        /// <summary>
+        /// Execute function if argument is not null and return result or null.
+        /// Invoke callback if executing result is null.
+        /// </summary>
+        /// <typeparam name="T">Type of function argument.</typeparam>
+        /// <typeparam name="TResult">Type of function result.</typeparam>
+        /// <param name="val">Argument.</param>
+        /// <param name="func">Function.</param>
+        /// <param name="alarm">Failure callback.</param>
+        /// <returns>Func executing result or null.</returns>
+        public static TResult ApplySafe<T, TResult>(this T val, Func<T, TResult> func, Action<T> alarm)
+        {
+            if (val == null)
+            {
+                return default(TResult);
+            }
+            var result = func(val);
+
+            if (result == null && alarm != null)
+            {
+                alarm(val);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Execute function if argument is not null.
+        /// </summary>
+        /// <typeparam name="T">Type of function argument.</typeparam>
+        /// <param name="val">Argument.</param>
+        /// <param name="func">Function.</param>
+        public static void ApplySafe<T>(this T val, Action<T> func)
+        {
+            if (val != null)
+            {
+                func(val);
+            }
+        }
 
         /// <summary>
         /// Execute function on each collection item and return the collection.
@@ -30,7 +69,7 @@ namespace FunX
         /// <param name="values">Collection of items.</param>
         /// <param name="func">Function to apply to items.</param>
         /// <returns>The same collection.</returns>
-        public static IEnumerable<T> FeachDo<T>(this IEnumerable<T> values, Action<T> func)
+        public static IEnumerable<T> Feach<T>(this IEnumerable<T> values, Action<T> func)
         {
             foreach (var val in values) func(val);
 
@@ -43,7 +82,7 @@ namespace FunX
         /// <typeparam name="T">Type of items.</typeparam>
         /// <param name="values">Collection of items.</param>
         /// <param name="func">Function to apply to items.</param>
-        public static void FeachDone<T>(this IEnumerable<T> values, Action<T> func)
+        public static void FeachEnd<T>(this IEnumerable<T> values, Action<T> func)
         {
             foreach (var val in values) func(val);
         }
