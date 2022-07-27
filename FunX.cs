@@ -82,7 +82,7 @@ namespace FunX
         /// <typeparam name="T">Type of items.</typeparam>
         /// <param name="values">Collection of items.</param>
         /// <param name="func">Function to apply to items.</param>
-        public static void FeachEnd<T>(this IEnumerable<T> values, Action<T> func)
+        public static void FeachLast<T>(this IEnumerable<T> values, Action<T> func)
         {
             foreach (var val in values) func(val);
         }
