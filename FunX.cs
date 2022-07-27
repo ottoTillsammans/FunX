@@ -135,5 +135,48 @@ namespace FunX
         {
             return (v) => (w) => (x) => (y) => (z) => funс(v, w, x, y, z);
         }
+
+        /// <summary>
+        /// Try to execute function on argument.
+        /// </summary>
+        /// <typeparam name="T">Type of object.</typeparam>
+        /// <param name="val">Object.</param>
+        /// <param name="tryAction">Function to try.</param>
+        /// <param name="catchAction">Function to catch exception.</param>
+        public static void Try<T>(this T val, Action<T> tryAction, Action<Exception> catchAction)
+        {
+            try
+            {
+                tryAction(val);
+            }
+            catch (Exception ex)
+            {
+                catchAction(ex);
+            }
+        }
+
+        /// <summary>
+        /// Try to execute function on argument.
+        /// </summary>
+        /// <typeparam name="T">Type of object.</typeparam>
+        /// <param name="val">Object.</param>
+        /// <param name="tryAction">Function to try.</param>
+        /// <param name="catchAction">Function to catch exception.</param>
+        /// <param name="finalAction">Unconditionl function.</param>
+        public static void Try<T>(this T val, Action<T> tryAction, Action<Exception> catchAction, Action<T> finalAction)
+        {
+            try
+            {
+                tryAction(val);
+            }
+            catch (Exception ex)
+            {
+                catchAction(ex);
+            }
+            finally
+            {
+                finalAction(val);
+            }
+        }
     }
 }
