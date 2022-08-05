@@ -93,8 +93,7 @@ namespace FunX
                 return values;
 
             foreach (var val in values)
-                if (val != null)
-                    func(val);
+                func(val);
 
             return values;
         }
