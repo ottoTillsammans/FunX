@@ -70,7 +70,7 @@ namespace FunX
         /// <param name="values">Collection of items.</param>
         /// <param name="func">Function to apply to items.</param>
         /// <returns>The same collection.</returns>
-        public static IEnumerable<T> Feach<T>(this IEnumerable<T> values, Action<T> func)
+        public static IEnumerable<T> FeachWeak<T>(this IEnumerable<T> values, Action<T> func)
         {
             foreach (var val in values)
                 if (val != null)
@@ -87,7 +87,7 @@ namespace FunX
         /// <param name="values">Collection of items.</param>
         /// <param name="func">Function to apply to items.</param>
         /// <returns>The same collection.</returns>
-        public static IEnumerable<T> FeachSave<T>(this IEnumerable<T> values, Action<T> func)
+        public static IEnumerable<T> FeachStrictly<T>(this IEnumerable<T> values, Action<T> func)
         {
             if (values.Any(v => v == null))
                 return values;
@@ -97,17 +97,6 @@ namespace FunX
                     func(val);
 
             return values;
-        }
-
-        /// <summary>
-        /// Execute function on each collection item.
-        /// </summary>
-        /// <typeparam name="T">Type of items.</typeparam>
-        /// <param name="values">Collection of items.</param>
-        /// <param name="func">Function to apply to items.</param>
-        public static void FeachLast<T>(this IEnumerable<T> values, Action<T> func)
-        {
-            foreach (var val in values) func(val);
         }
 
         /// <summary>

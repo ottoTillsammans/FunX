@@ -1,4 +1,8 @@
 # FunX by OttoTillsammans
+# 
+# Actual features on: dev
+#
+# Code examples on: xmpl
 #
 # This project is inspired by:
 #
