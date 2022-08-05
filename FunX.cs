@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FunX
 {
@@ -71,6 +72,26 @@ namespace FunX
         /// <returns>The same collection.</returns>
         public static IEnumerable<T> Feach<T>(this IEnumerable<T> values, Action<T> func)
         {
+            foreach (var val in values)
+                if (val != null)
+                    func(val);
+
+            return values;
+        }
+
+        /// <summary>
+        /// Execute function on each collection item 
+        /// if all are not null and return the collection.
+        /// </summary>
+        /// <typeparam name="T">Type of items.</typeparam>
+        /// <param name="values">Collection of items.</param>
+        /// <param name="func">Function to apply to items.</param>
+        /// <returns>The same collection.</returns>
+        public static IEnumerable<T> FeachSave<T>(this IEnumerable<T> values, Action<T> func)
+        {
+            if (values.Any(v => v == null))
+                return values;
+
             foreach (var val in values)
                 if (val != null)
                     func(val);
