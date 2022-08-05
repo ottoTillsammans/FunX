@@ -70,7 +70,7 @@ namespace FunX
         /// <param name="values">Collection of items.</param>
         /// <param name="func">Function to apply to items.</param>
         /// <returns>The same collection.</returns>
-        public static IEnumerable<T> FeachWeak<T>(this IEnumerable<T> values, Action<T> func)
+        public static IEnumerable<T> FeachWeakly<T>(this IEnumerable<T> values, Action<T> func)
         {
             foreach (var val in values)
                 if (val != null)
