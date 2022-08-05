@@ -65,35 +65,42 @@ namespace FunX
 
         /// <summary>
         /// Execute function on each not-null collection item and return the collection.
+        /// Invoke callback every time when item is null.
         /// </summary>
         /// <typeparam name="T">Type of items.</typeparam>
         /// <param name="values">Collection of items.</param>
         /// <param name="func">Function to apply to items.</param>
         /// <returns>The same collection.</returns>
-        public static IEnumerable<T> FeachWeakly<T>(this IEnumerable<T> values, Action<T> func)
+        public static IEnumerable<T> FeachWeakly<T>(this IEnumerable<T> values, Action<T> func, Func<T> alarm)
         {
             foreach (var val in values)
                 if (val != null)
                     func(val);
+                else if (alarm != null)
+                    alarm();
 
             return values;
         }
 
         /// <summary>
-        /// Execute function on each collection item 
-        /// if all are not null and return the collection.
+        /// Execute function on each collection item if all are not null and return the collection.
+        /// Invoke callback when at least one item is null.
         /// </summary>
         /// <typeparam name="T">Type of items.</typeparam>
         /// <param name="values">Collection of items.</param>
         /// <param name="func">Function to apply to items.</param>
         /// <returns>The same collection.</returns>
-        public static IEnumerable<T> FeachStrictly<T>(this IEnumerable<T> values, Action<T> func)
+        public static IEnumerable<T> FeachStrictly<T>(this IEnumerable<T> values, Action<T> func, Func<T> alarm)
         {
-            if (values.Any(v => v == null))
+            if (values.Any(v => v == null) && alarm != null)
+            {
+                alarm();
+                
                 return values;
-
+            }
             foreach (var val in values)
-                func(val);
+                if (val != null)
+                    func(val);
 
             return values;
         }
