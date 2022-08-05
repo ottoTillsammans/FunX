@@ -63,7 +63,7 @@ namespace FunX
         }
 
         /// <summary>
-        /// Execute function on each collection item and return the collection.
+        /// Execute function on each not-null collection item and return the collection.
         /// </summary>
         /// <typeparam name="T">Type of items.</typeparam>
         /// <param name="values">Collection of items.</param>
@@ -71,7 +71,9 @@ namespace FunX
         /// <returns>The same collection.</returns>
         public static IEnumerable<T> Feach<T>(this IEnumerable<T> values, Action<T> func)
         {
-            foreach (var val in values) func(val);
+            foreach (var val in values)
+                if (val != null)
+                    func(val);
 
             return values;
         }
