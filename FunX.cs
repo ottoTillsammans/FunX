@@ -34,7 +34,7 @@ namespace FunX
         /// <param name="func">Function.</param>
         /// <param name="alarm">Failure callback.</param>
         /// <returns>Func executing result or null.</returns>
-        public static TResult ApplySafe<T, TResult>(this T val, Func<T, TResult> func, Action<T> alarm)
+        public static TResult ApplySafe<T, TResult>(this T val, Func<T, TResult> func, Callback.Alarm<T> alarm)
         {
             if (val == null)
                 return default(TResult);
@@ -69,7 +69,7 @@ namespace FunX
         /// <param name="values">Collection of items.</param>
         /// <param name="func">Function to apply to items.</param>
         /// <returns>The same collection.</returns>
-        public static IEnumerable<T> FeachWeakly<T, A>(this IEnumerable<T> values, Action<T> func, Func<A> alarm)
+        public static IEnumerable<T> FeachWeakly<T, A>(this IEnumerable<T> values, Action<T> func, Callback.Alarm alarm)
         {
             foreach (var val in values)
             {
@@ -79,7 +79,6 @@ namespace FunX
                 else if (alarm != null)
                     alarm();
             }
-
             return values;
         }
 
@@ -92,7 +91,7 @@ namespace FunX
         /// <param name="values">Collection of items.</param>
         /// <param name="func">Function to apply to items.</param>
         /// <returns>The same collection.</returns>
-        public static IEnumerable<T> FeachStrictly<T, A>(this IEnumerable<T> values, Action<T> func, Func<A> alarm)
+        public static IEnumerable<T> FeachStrictly<T, A>(this IEnumerable<T> values, Action<T> func, Callback.Alarm alarm)
         {
             if (values.Any(v => v == null) && alarm != null)
             {
