@@ -76,7 +76,7 @@ namespace FunX
                 if (val != null)
                     func(val);
 
-                else if (alarm != null)
+                else if (val == null && alarm != null)
                     alarm();
             }
             return values;
